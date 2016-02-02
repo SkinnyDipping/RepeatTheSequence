@@ -3,7 +3,7 @@ package com.szalpal.repeatthesequence.app;
 /**
  * Created by michal on 01.02.16.
  */
-public interface IGameplay {
+public interface Gameplay {
 
     void onNewSequence();
 
@@ -12,8 +12,4 @@ public interface IGameplay {
     void onError();
 
     void onStartGame();
-
-    boolean startGame();
-
-    void buttonPressed(int buttonID);
 }
