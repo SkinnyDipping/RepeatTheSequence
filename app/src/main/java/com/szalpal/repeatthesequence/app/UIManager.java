@@ -89,23 +89,23 @@ public class UIManager implements GameplayListener {
     @Override
     public void onNewSequence(List<Integer> newSequence) {
         Log.d(TAG, "onNewSequence");
-        mLockGame = true;
         for (Integer i : newSequence) {
             blinkButton(i, mBlinkDuration);
             try {
                 synchronized (this) {
-                    wait(mBetweenBlinksDuration);
+                    wait(mBetweenBlinksDuration + mBlinkDuration);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        mLockGame = false;
+        lockGame(false);
     }
 
     @Override
     public void onSequenceCompleted() {
         Log.d(TAG, "onSequenceComppletesd");
+        lockGame(true);
         setCurrScore(++mCurrScore);
     }
 
