@@ -54,23 +54,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/maxScore_text"
+                android:textColor="@color/text_color"
                 android:id="@+id/maxScore_text"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MAX"
+                android:textColor="@color/text_color"
                 android:id="@+id/maxScore_value"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/currScore_text"
-                android:id="@+id/currScore_text"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/currScore_text"
+                android:textColor="@color/text_color"
+                android:id="@+id/currScore_text"/>
+        
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="MAX"
+                android:textColor="@color/text_color"
                 android:id="@+id/currScore_value"/>
     </LinearLayout>
 
