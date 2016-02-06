@@ -1,15 +1,15 @@
 package com.szalpal.repeatthesequence.app;
 
+import android.util.Log;
+
 /**
- * Created by michal on 01.02.16.
+ * Created by michal on 06.02.16.
  */
 public interface Gameplay {
 
-    void onNewSequence();
+    void buttonPressed(int buttonId);
 
-    void onSequenceCompleted();
+    void startGame();
 
-    void onError();
-
-    void onStartGame();
+    void stopGame();
 }

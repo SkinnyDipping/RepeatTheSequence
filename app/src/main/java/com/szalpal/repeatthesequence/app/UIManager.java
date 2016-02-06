@@ -1,18 +1,18 @@
 package com.szalpal.repeatthesequence.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class UIManager implements Gameplay {
+import java.util.List;
+
+public class UIManager implements GameplayListener {
 
     private static final String TAG = MainActivity.TAG;
 
     private final Activity activity;
-
-    private UiSignals signals;
+    private Gameplay mGameplay;
 
     private Button A_Button, B_Button, C_Button, D_Button;
     private Button Start_Button;
@@ -22,7 +22,7 @@ public class UIManager implements Gameplay {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked A button");
-//            signals.buttonPressed(A_ButtonId);
+//            mGameplay.buttonPressed(A_ButtonId);
         }
     };
 
@@ -30,7 +30,7 @@ public class UIManager implements Gameplay {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked B button");
-//            signals.buttonPressed(B_ButtonId);
+//            mGameplay.buttonPressed(B_ButtonId);
         }
     };
 
@@ -38,7 +38,7 @@ public class UIManager implements Gameplay {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked C button");
-//            signals.buttonPressed(C_ButtonId);
+//            mGameplay.buttonPressed(C_ButtonId);
         }
     };
 
@@ -46,7 +46,7 @@ public class UIManager implements Gameplay {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked D button");
-//            signals.buttonPressed(D_ButtonId);
+//            mGameplay.buttonPressed(D_ButtonId);
         }
     };
 
@@ -54,19 +54,20 @@ public class UIManager implements Gameplay {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked Start button");
-//            signals.startGame();
+//            mGameplay.startGame();
         }
     };
 
-    public UIManager(Activity a) {
+    public UIManager(Activity a, Gameplay gameplay) {
         activity = a;
+        mGameplay = gameplay;
 
         assignViews();
         registerListeners();
     }
 
     @Override
-    public void onNewSequence() {
+    public void onNewSequence(List<Integer> newSequence) {
 
     }
 
@@ -77,11 +78,6 @@ public class UIManager implements Gameplay {
 
     @Override
     public void onError() {
-
-    }
-
-    @Override
-    public void onStartGame() {
 
     }
 

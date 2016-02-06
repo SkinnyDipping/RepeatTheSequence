@@ -10,13 +10,16 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "SzalGame";
 
     private UIManager mUiManager;
+    private GameplayImpl mGameplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_layout);
 
-        mUiManager = new UIManager(this);
+        mGameplay = new GameplayImpl();
+        mUiManager = new UIManager(this, mGameplay);
+        mGameplay.registerListener(mUiManager);
     }
 
     @Override
