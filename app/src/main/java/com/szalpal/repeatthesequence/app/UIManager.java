@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UIManager implements GameplayListener {
 
@@ -27,12 +29,14 @@ public class UIManager implements GameplayListener {
     private int mBetweenBlinksDuration = 1000;
     private boolean mLockGame = false;
 
+    private Timer t = new Timer();
+
 
     View.OnClickListener A_ButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked A button");
-//            mGameplay.buttonPressed(A_ButtonId);
+            mGameplay.buttonPressed(A_ButtonId);
         }
     };
 
@@ -41,7 +45,7 @@ public class UIManager implements GameplayListener {
         public void onClick(View view) {
             if (mLockGame) return;
             Log.d(TAG, "Clicked B button");
-//            mGameplay.buttonPressed(B_ButtonId);
+            mGameplay.buttonPressed(B_ButtonId);
         }
     };
 
@@ -50,7 +54,14 @@ public class UIManager implements GameplayListener {
         public void onClick(View view) {
             if (mLockGame) return;
             Log.d(TAG, "Clicked C button");
-//            mGameplay.buttonPressed(C_ButtonId);
+            TimerTask tt = new TimerTask() {
+                @Override
+                public void run() {
+                    mGameplay.buttonPressed(C_ButtonId);
+
+                }
+            };
+            t.schedule(tt, 1000L);
         }
     };
 
@@ -59,7 +70,7 @@ public class UIManager implements GameplayListener {
         public void onClick(View view) {
             if (mLockGame) return;
             Log.d(TAG, "Clicked D button");
-//            mGameplay.buttonPressed(D_ButtonId);
+            mGameplay.buttonPressed(D_ButtonId);
         }
     };
 

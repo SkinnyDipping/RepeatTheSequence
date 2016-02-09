@@ -10,14 +10,14 @@ public class MainActivity extends Activity {
     public static final String TAG = "SzalGame";
 
     private UIManager mUiManager;
-    private GameplayDev mGameplay; // Change to GameplayImpl
+    private GameplayImpl mGameplay; // Change to GameplayImpl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_layout);
 
-        mGameplay = new GameplayDev(); // Change to GameplayImpl
+        mGameplay = new GameplayImpl(); // Change to GameplayImpl
         mUiManager = new UIManager(this, mGameplay);
         mGameplay.registerListener(mUiManager);
     }
