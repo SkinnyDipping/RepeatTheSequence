@@ -15,6 +15,7 @@ public class UIManager implements GameplayListener {
     private static final String TAG = MainActivity.TAG;
 
     private static final int BUTTONS_NUMBER = 4;
+    private static final long DELAY_BUTTON_TIMER_TASK = 200L;
 
     private final Activity activity;
     private Gameplay mGameplay;
@@ -42,7 +43,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(A_ButtonId);
                 }
             };
-            t.schedule(tt, 1000L);
+            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -57,7 +58,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(B_ButtonId);
                 }
             };
-            t.schedule(tt, 1000L);
+            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -72,7 +73,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(C_ButtonId);
                 }
             };
-            t.schedule(tt, 1000L);
+            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -87,7 +88,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(D_ButtonId);
                 }
             };
-            t.schedule(tt, 1000L);
+            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -95,7 +96,14 @@ public class UIManager implements GameplayListener {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked Start button");
-//            mGameplay.startGame();
+            enableGameButtons(true);
+            TimerTask tt = new TimerTask() {
+                @Override
+                public void run() {
+                    mGameplay.startGame();
+                }
+            };
+            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -106,6 +114,8 @@ public class UIManager implements GameplayListener {
         assignViews();
         registerListeners();
         createButtonArray();
+
+        enableGameButtons(false);
     }
 
     /**
@@ -140,6 +150,7 @@ public class UIManager implements GameplayListener {
     @Override
     public void onError() {
         Log.d(TAG, "onError");
+
 //        lockGame(true);
 //        if (mCurrScore    > mMaxScore) {
 //            mMaxScore = mCurrScore;
@@ -189,7 +200,7 @@ public class UIManager implements GameplayListener {
         B_Button = (Button) activity.findViewById(R.id.button_B);
         C_Button = (Button) activity.findViewById(R.id.button_C);
         D_Button = (Button) activity.findViewById(R.id.button_D);
-        // TODO start button
+        Start_Button = (Button) activity.findViewById(R.id.button_start);
     }
 
     private void registerListeners() {
@@ -197,7 +208,7 @@ public class UIManager implements GameplayListener {
         B_Button.setOnClickListener(B_ButtonListener);
         C_Button.setOnClickListener(C_ButtonListener);
         D_Button.setOnClickListener(D_ButtonListener);
-        // TODO start button
+        Start_Button.setOnClickListener(Start_ButtonListener);
     }
 
     private void createButtonArray() {
@@ -205,6 +216,14 @@ public class UIManager implements GameplayListener {
         mButtons[B_ButtonId] = B_Button;
         mButtons[C_ButtonId] = C_Button;
         mButtons[D_ButtonId] = D_Button;
+    }
+
+    private void enableGameButtons(boolean enable) {
+        A_Button.setEnabled(enable);
+        B_Button.setEnabled(enable);
+        C_Button.setEnabled(enable);
+        D_Button.setEnabled(enable);
+        Start_Button.setEnabled(!enable);
     }
 
     private void setMaxScore(final int score) {
