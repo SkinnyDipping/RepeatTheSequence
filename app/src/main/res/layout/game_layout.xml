@@ -3,7 +3,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_color"
-            android:columnCount="3"
+            android:columnCount="4"
             android:rowCount="2">
 
     <Button
@@ -78,6 +78,14 @@
                 android:textColor="@color/text_color"
                 android:id="@+id/currScore_value"/>
     </LinearLayout>
+
+    <Button
+            android:id="@+id/button_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="START"
+            android:layout_row="0"
+            android:layout_column="3"/>
 
 
 </GridLayout>
