@@ -36,7 +36,13 @@ public class UIManager implements GameplayListener {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "Clicked A button");
-            mGameplay.buttonPressed(A_ButtonId);
+            TimerTask tt = new TimerTask() {
+                @Override
+                public void run() {
+                    mGameplay.buttonPressed(A_ButtonId);
+                }
+            };
+            t.schedule(tt, 1000L);
         }
     };
 
@@ -45,7 +51,13 @@ public class UIManager implements GameplayListener {
         public void onClick(View view) {
             if (mLockGame) return;
             Log.d(TAG, "Clicked B button");
-            mGameplay.buttonPressed(B_ButtonId);
+            TimerTask tt = new TimerTask() {
+                @Override
+                public void run() {
+                    mGameplay.buttonPressed(B_ButtonId);
+                }
+            };
+            t.schedule(tt, 1000L);
         }
     };
 
@@ -58,7 +70,6 @@ public class UIManager implements GameplayListener {
                 @Override
                 public void run() {
                     mGameplay.buttonPressed(C_ButtonId);
-
                 }
             };
             t.schedule(tt, 1000L);
@@ -70,7 +81,13 @@ public class UIManager implements GameplayListener {
         public void onClick(View view) {
             if (mLockGame) return;
             Log.d(TAG, "Clicked D button");
-            mGameplay.buttonPressed(D_ButtonId);
+            TimerTask tt = new TimerTask() {
+                @Override
+                public void run() {
+                    mGameplay.buttonPressed(D_ButtonId);
+                }
+            };
+            t.schedule(tt, 1000L);
         }
     };
 
