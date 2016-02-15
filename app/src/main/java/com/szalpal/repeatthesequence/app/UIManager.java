@@ -151,11 +151,11 @@ public class UIManager implements GameplayListener {
     public void onError() {
         Log.d(TAG, "onError");
 
-//        lockGame(true);
-//        if (mCurrScore    > mMaxScore) {
-//            mMaxScore = mCurrScore;
-//            setMaxScore(mMaxScore);
-//        }
+        lockGame(true);
+        if (mCurrScore > mMaxScore) {
+            mMaxScore = mCurrScore;
+            setMaxScore(mMaxScore);
+        }
     }
 
     /**
