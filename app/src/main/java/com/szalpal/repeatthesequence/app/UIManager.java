@@ -22,7 +22,7 @@ public class UIManager implements GameplayListener {
 
     private Button A_Button, B_Button, C_Button, D_Button;
     private Button Start_Button;
-    private int A_ButtonId = 0, B_ButtonId = 1, C_ButtonId = 2, D_ButtonId = 3, Start_ButtonId = 0;
+    private int A_ButtonId = 0, B_ButtonId = 1, C_ButtonId = 2, D_ButtonId = 3;
     private Button[] mButtons = new Button[BUTTONS_NUMBER];
 
     private int mCurrScore, mMaxScore;
@@ -30,7 +30,7 @@ public class UIManager implements GameplayListener {
     private int mBetweenBlinksDuration = 1000;
     private boolean mLockGame = false;
 
-    private Timer t = new Timer();
+    private Timer timer = new Timer();
 
 
     View.OnClickListener A_ButtonListener = new View.OnClickListener() {
@@ -43,7 +43,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(A_ButtonId);
                 }
             };
-            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
+            timer.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -58,7 +58,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(B_ButtonId);
                 }
             };
-            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
+            timer.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -73,7 +73,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(C_ButtonId);
                 }
             };
-            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
+            timer.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -88,7 +88,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.buttonPressed(D_ButtonId);
                 }
             };
-            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
+            timer.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -103,7 +103,7 @@ public class UIManager implements GameplayListener {
                     mGameplay.startGame();
                 }
             };
-            t.schedule(tt, DELAY_BUTTON_TIMER_TASK);
+            timer.schedule(tt, DELAY_BUTTON_TIMER_TASK);
         }
     };
 
@@ -118,15 +118,10 @@ public class UIManager implements GameplayListener {
         enableGameButtons(false);
     }
 
-    /**
-     * TODO
-     * Zmniejszanie durationów
-     *
-     * @param newSequence
-     */
     @Override
     public void onNewSequence(List<Integer> newSequence) {
         Log.d(TAG, "onNewSequence");
+        updateDuration();
         for (Integer i : newSequence) {
             blinkButton(i, mBlinkDuration);
             try {
@@ -158,12 +153,6 @@ public class UIManager implements GameplayListener {
         }
     }
 
-    /**
-     * TODO
-     *
-     * @param buttonId
-     * @param duration ms
-     */
     private void blinkButton(int buttonId, final int duration) {
         final Button button = mButtons[buttonId];
 
@@ -193,6 +182,10 @@ public class UIManager implements GameplayListener {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void updateDuration() {
+        //TODO
     }
 
     private void assignViews() {
